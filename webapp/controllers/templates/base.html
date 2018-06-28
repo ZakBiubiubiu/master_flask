@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Comapatible" content="IE=edge">
+    <meta name="viewport" content="width=device-witdh, initial-scale=1">
+    <title>{%  block title %}Blog{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    {% macro render_pagination(pagination,endpoint,tag_name=None,username=None) %}
+        <nav>
+            <ul class="pagination">
+                <li>
+                    <a href="{{ url_for(endpoint,tag_name=tag_name,username=username,page=pagination.prev().page) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                {% for page in pagination.iter_pages() %}
+                    {% if page %}
+                        {% if page!=pagination.page %}
+                            <li>
+                                <a href="{{ url_for(endpoint,tag_name=tag_name,page=page,username=username) }}">
+                                    {{ page }}
+                                </a>
+                            </li>
+                        {% else %}
+                            <li><a href=""><strong>{{ page }}</strong></a></li>
+                        {% endif %}
+                    {% else %}
+                        <li><a href="">...</a></li>
+                    {% endif %}
+                {% endfor %}
+                <li>
+                    <a href="{{ url_for(endpoint,tag_name=tag_name,username=username,page=pagination.next().page) }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    {% endmacro %}
+    {% macro render_comment_form(form,endpoint) %}
+    <div class="col-lg-12">
+        <h3>New Comment:</h3>
+        <form method="post" action="{{ url_for(endpoint,post_id=post.id) }}">{{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.name.label }}
+                {% if form.name.errors %}
+                    {% for e in form.name.errors %}
+                        <p class="help-block">{{ e }}</p>
+                    {% endfor %}
+                {% endif %}
+                {{ form.name(class_='form-control') }}
+            </div>
+            <div class="form-group">
+                {{ form.text.label }}
+                {% if form.text.errors %}
+                    {% for e in form.text.errors %}
+                        <p class="help-block">{{ e }}</p>
+                    {% endfor %}
+                {% endif %}
+                {{ form.text(class_='form-control') }}
+                {#    因为class在某些python模板语言内是保留关键字，所以写出class_#}
+            </div>
+            <input type="submit" class="btn btn-primary" value="Add Comment"></form>
+    </div>
+    {% endmacro %}
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <h1><a href="{{ url_for('blog.home')}}">My Blog</a></h1>
+            <h3><a href="{{ url_for('blog.user',username='zak')}}">Author</a></h3>
+            <p>Welcome to the blog!</p>
+        </div>
+        {% block body %}{% endblock %}
+    </div>
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>
