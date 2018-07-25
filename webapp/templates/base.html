@@ -7,12 +7,17 @@
     <title>{%  block title %}Blog{% endblock %}</title>
     <!-- Bootstrap -->
     <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-
+{#    {%  assets 'main_css' %}#}
+{#    <link rel="stylesheet" type="text/css" href="{{ ASSET_URL }}">#}
+{#    {% endassets %}#}
     <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
     <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
     <!--[if lt IE 9]>
       <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
       <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+{#    {% assets 'main_js' %}#}
+{#    <script src='{{ ASSET_URL }}'></script>#}
+{#    {% endassets %}#}
     <![endif]-->
     {% macro render_pagination(pagination,endpoint,tag_name=None,username=None) %}
         <nav>
@@ -45,40 +50,46 @@
             </ul>
         </nav>
     {% endmacro %}
-    {% macro render_comment_form(form,endpoint) %}
-    <div class="col-lg-12">
-        <h3>New Comment:</h3>
-        <form method="post" action="{{ url_for(endpoint,post_id=post.id) }}">{{ form.hidden_tag() }}
-            <div class="form-group">
-                {{ form.name.label }}
-                {% if form.name.errors %}
-                    {% for e in form.name.errors %}
-                        <p class="help-block">{{ e }}</p>
+    {% macro render_form(form, endpoint, submitvalue, post_id=None, header='') %}
+        <div class="col-lg-12">
+            <h3>{{ header }}</h3>
+            <form method="post" action="{{ url_for(endpoint,post_id=post_id) }}">{{ form.hidden_tag() }}
+                <div class="form-group">
+                    {% for c in form if not c.type == 'CSRFTokenField' %}
+                        {# 通过flags判断： {% for c in form if c.flags.required %}#}
+                        {# 通过字段的类型判断是否渲染：for c in form if c.type=='StringField'or c.type == 'TextAreaField'#}
+                        {{ c.label }}:{{ c(class_='form-control') }}
+                        {#    因为class在某些python模板语言内是保留关键字，所以写出class_#}
+                        {% if c.errors %}
+                            {% for e in c.errors %}
+                                <p class="help-block">{{ e }}</p>
+                            {% endfor %}
+                        {% endif %}
                     {% endfor %}
-                {% endif %}
-                {{ form.name(class_='form-control') }}
-            </div>
-            <div class="form-group">
-                {{ form.text.label }}
-                {% if form.text.errors %}
-                    {% for e in form.text.errors %}
-                        <p class="help-block">{{ e }}</p>
-                    {% endfor %}
-                {% endif %}
-                {{ form.text(class_='form-control') }}
-                {#    因为class在某些python模板语言内是保留关键字，所以写出class_#}
-            </div>
-            <input type="submit" class="btn btn-primary" value="Add Comment"></form>
-    </div>
+                </div>
+                <input type="submit" class="btn btn-primary" value={{ submitvalue }}>
+            </form>
+        </div>
     {% endmacro %}
 </head>
 <body>
     <div class="container">
         <div class="jumbotron">
-            <h1><a href="{{ url_for('blog.home')}}">My Blog</a></h1>
-            <h3><a href="{{ url_for('blog.user',username='zak')}}">Author</a></h3>
+            <h1><a href="{{ url_for('blog.home')}}">Zach's Blog</a></h1>
+            <h3><a href="{{ url_for('blog.user',username='zach')}}">About the Author</a></h3>
             <p>Welcome to the blog!</p>
         </div>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+{#            flask.get_flashed_messages(with_categories=False, category_filter=[])#}
+{#            默认参数1是false，返回信息，设置为true时，返回(category,message)元组#}
+{#            参数2设置筛选的类别。#}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }} alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         {% block body %}{% endblock %}
     </div>
 
@@ -86,5 +97,6 @@
     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    {% block js %}{% endblock %}
 </body>
 </html>

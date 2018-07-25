@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Comapatible" content="IE=edge">
+    <meta name="viewport" content="width=device-witdh, initial-scale=1">
+    <title>{%  block title %}Blog{% endblock %}</title>
+    <!-- Bootstrap -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 shim 和 Respond.js 是为了让 IE8 支持 HTML5 元素和媒体查询（media queries）功能 -->
+    <!-- 警告：通过 file:// 协议（就是直接将 html 页面拖拽到浏览器中）访问页面时 Respond.js 不起作用 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    {% macro render_comment_form(form, header=None, endpoint, submitvalue, post_id=None) %}
+        <div class="col-lg-12">
+            <h3>{{ header }}:</h3>
+            <form method="post" action="{{ url_for(endpoint,post_id=post_id) }}">{{ form.hidden_tag() }}
+                <div class="form-group">
+                    {% for c in form if not c.type == 'CSRFTokenField' %}
+                        {# 通过flags判断： {% for c in form if c.flags.required %}#}
+                        {# 通过字段的类型判断是否渲染：for c in form if c.type=='StringField'or c.type == 'TextAreaField'#}
+                        {{ c.label }}:{{ c(class_='form-control') }}
+                        {#    因为class在某些python模板语言内是保留关键字，所以写出class_#}
+                        {% if c.errors %}
+                            {% for e in c.errors %}
+                                <p class="help-block">{{ e }}</p>
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
+                <input type="submit" class="btn btn-primary" value={{ submitvalue }}>
+            </form>
+        </div>
+    {% endmacro %}
+
+
+
+</head>
+<body>
+
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li>
+      <a href="#" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li>
+      <a href="#" aria-label="Next">
+        <span aria-hidden="false">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+
+
+
+
+
+
+
+
+
+    <!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block title %}修改文章{% endblock %}
+{% block body %}
+<div class="row">
+    <h1 class="text-center">修改文章</h1>
+    <form action="{{ url_for('blog.edit_post', id=post.id) }}" method="post">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.title.label }}
+            {% if form.title.errors %}
+                {% for e in form.title.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+            {{ form.title(class_='form-control', value=post.title)}}
+        </div>
+        <div class="form-group">
+            {{ form.text.label }}
+            {% if form.text.errors %}
+                {% for e in form.text.errors %}
+                    <p class="help-block">{{ e }}</p>
+                {% endfor %}
+            {% endif %}
+            {{ form.text(id='editor',class_='form-control')}}
+        </div>
+        <input type="submit" class="btn btn-primary" value="Submit">
+    </form>
+</div>
+{% endblock %}
+{% block js %}
+<script src="https://cdn.bootcss.com/ckeditor/4.9.2/ckeditor.js"></script>
+<script>CKEDITOR.replace('editor');</script>
+{% endblock  %}
