@@ -1,24 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="be3191b7-d8b7-448e-ba93-4a099761ad57" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manager.py" beforeDir="false" afterPath="$PROJECT_DIR$/manager.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/config.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/blog.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/controllers/blog.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/init.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/controllers/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/templates/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/base.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/templates/blog/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/blog/home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/templates/blog/post.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/blog/post.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/templates/blog/tag.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/blog/tag.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/controllers/templates/blog/user.html" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/templates/blog/user.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/exts.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/exts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/webapp/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/templates/home.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/webapp/test.py" beforeDir="false" />
-    </list>
+    <list default="true" id="be3191b7-d8b7-448e-ba93-4a099761ad57" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -89,16 +72,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_urls.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="test_urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/webapp/tests/test_urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="274">
-              <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+              <caret line="49" selection-start-line="49" selection-end-line="49" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
             </state>
           </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fabfile.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/webapp/fabfile.py">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
@@ -167,7 +155,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/blog/post.html" />
         <option value="$PROJECT_DIR$/templates/blog/tag.html" />
         <option value="$PROJECT_DIR$/templates/blog/user.html" />
         <option value="$PROJECT_DIR$/config.py" />
@@ -218,6 +205,7 @@
         <option value="$PROJECT_DIR$/webapp/tests/__init__.py" />
         <option value="$PROJECT_DIR$/webapp/config.py" />
         <option value="$PROJECT_DIR$/webapp/tests/test_urls.py" />
+        <option value="$PROJECT_DIR$/webapp/fabfile.py" />
       </list>
     </option>
   </component>
@@ -441,7 +429,7 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="562" y="20" width="844" height="606" extended-state="0" />
+    <frame x="603" y="9" width="844" height="606" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -524,7 +512,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/webapp/test_signal.py" />
     <entry file="file://$PROJECT_DIR$/webapp/test.py" />
     <entry file="file://$PROJECT_DIR$/webapp/test_yield.py" />
     <entry file="file://$PROJECT_DIR$/webapp/learn_celery.py" />
@@ -845,12 +832,15 @@
     <entry file="file://$PROJECT_DIR$/webapp/tests/test_urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="274">
-          <caret line="49" lean-forward="true" selection-start-line="49" selection-end-line="49" />
+          <caret line="49" selection-start-line="49" selection-end-line="49" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webapp/fabfile.py">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
