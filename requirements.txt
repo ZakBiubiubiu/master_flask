@@ -17,7 +17,7 @@ click==6.7
 coverage==4.5.1
 cssmin==0.2.0
 defusedxml==0.5.0
-eventlet==0.23.0
+eventlet==0.31.0
 Flask==1.0.2
 Flask-Admin==1.5.1
 Flask-Assets==0.12
