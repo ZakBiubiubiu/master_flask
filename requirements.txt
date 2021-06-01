@@ -69,7 +69,7 @@ requests==2.18.4
 six==1.11.0
 SQLAlchemy==1.2.8
 tornado==5.1
-urllib3==1.22
+urllib3==1.26.5
 vine==1.1.4
 virtualenv==16.0.0
 webassets==0.12.1
