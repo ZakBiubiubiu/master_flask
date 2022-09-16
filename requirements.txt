@@ -50,7 +50,7 @@ itsdangerous==0.24
 Jinja2==2.10
 jsmin==2.2.2
 kombu==4.2.1
-Mako==1.0.7
+Mako==1.2.2
 MarkupSafe==1.0
 mongoengine==0.15.0
 multidict==4.3.1
